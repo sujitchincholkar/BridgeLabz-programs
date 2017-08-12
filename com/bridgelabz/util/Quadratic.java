@@ -1,5 +1,5 @@
 /**************************
-* Purpose :
+* Purpose :To Find roots of given Quadratic equation
 *
 * @author  Sujit
 * @version 1.0
@@ -9,6 +9,7 @@
  public class Quadratic { 
 
     public static void main(String[] args) { 
+        //takes input from Command line
         double a = Double.parseDouble(args[0]);
         double b = Double.parseDouble(args[1]);
         double c = Double.parseDouble(args[2]);

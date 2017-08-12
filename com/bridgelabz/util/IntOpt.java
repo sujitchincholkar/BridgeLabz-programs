@@ -10,9 +10,11 @@
 public class IntOpt { 
 
     public static void main(String[] args) {
+        //takes input from Command line
         int a = Integer.parseInt(args[0]);
         int b = Integer.parseInt(args[1]);
         int c = Integer.parseInt(args[2]);
+        //Basic Arithmatic operations
         int sum  = a + b * c;
         int prod = a * b + c;
         int quot = c +a / b;

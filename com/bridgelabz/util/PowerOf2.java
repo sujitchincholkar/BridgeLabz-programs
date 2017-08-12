@@ -8,7 +8,8 @@
 ***************************/
 class PowerOf2 {
   public static void main(String args[]) {
-     int n= Integer.parseInt(args[0]);
+   //takes input from Command line  
+   int n= Integer.parseInt(args[0]);
    double ans;
      for(int i=0;i<=n;i++) {
        ans=Math.pow(2,i);

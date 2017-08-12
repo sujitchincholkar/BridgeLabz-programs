@@ -1,5 +1,5 @@
 /***************************************************************************
-* Purpose : Find the repeted Number
+* Purpose : Find the repeated Number
 *
 * @author : Sujit
 * @version : 1.0

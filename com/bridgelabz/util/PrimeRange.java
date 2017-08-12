@@ -1,5 +1,5 @@
 /***************************************************************************
-* Purpose : To find prime nnumbers in given range
+* Purpose : To find prime numbers in given range
 *
 *@author : Sujit
 *@version : 1.0

@@ -1,5 +1,5 @@
 /**************************
-* Purpose : To perform basic arithmatic operation on a,b and c.
+* Purpose : This program takes p r n as input
 *
 * @author  Sujit
 * @version 1.0

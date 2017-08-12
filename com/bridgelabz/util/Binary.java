@@ -13,25 +13,15 @@ class Binary {
    public static void  main(String args[]) {
        
       //takes the command line argument from user
-      int nNumber = Integer.parseInt(args[0]);
-
-      int mDivision = 1;
-
-      //find the power of 2 from small to large
-      while(mDivision <= nNumber/2)
-         mDivision *=2;
-
-      //prints the binary number from large to small
-      while(mDivision > 0) {
-
-         if(nNumber < mDivision)
-            System.out.print("0");
-         else {
-            System.out.print("1");
-            nNumber -= mDivision;
-         }	
-         mDivision /= 2;
-      }
-      System.out.println();
+      int number = Integer.parseInt(args[0]);
+      int rem;
+      String bin[]={"0","1"};
+      String binary="";
+      while(number>0) {
+        rem=number%2;
+        binary=bin[rem]+binary;
+        number=number/2;
    }
+   System.out.println(binary);
+  }
 }

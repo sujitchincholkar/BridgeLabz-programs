@@ -1,5 +1,6 @@
 /**************************
-* Purpose :This program rolls die for n times
+* Purpose :This program rolls die for n times and prints which 
+*          side falls maximum times
 *
 * @author  Sujit
 * @version 1.0

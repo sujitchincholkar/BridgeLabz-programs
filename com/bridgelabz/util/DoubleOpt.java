@@ -10,9 +10,11 @@
 public class DoubleOpt { 
 
     public static void main(String[] args) {
+        ////takes input from Command line
         double a = Double.parseDouble(args[0]);
         double b = Double.parseDouble(args[1]);
         double c = Double.parseDouble(args[2]);
+        //Basic Arithmatic
         double sum  = a + b * c;
         double prod = a * b + c;
         double quot = c +a / b;
