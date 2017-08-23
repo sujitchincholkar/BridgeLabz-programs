@@ -7,18 +7,20 @@ class CouponNumber {
     for(int i=0;index<n;i++)
 	  {
 			randomNo=(int)(Math.random()*n);
-      	randomCount++;
-      for(int j=0;j<index;j++){
-      	if(a[j]==randomNo){
+      randomCount++;
+      for(int j=0;j<index;j++)
+			{
+      	if(a[j]==randomNo)
+				{
 					flag=1; 	
    			}
     	}
-    	if(flag==0) {
+    	if(flag==0) 
+			{
       	a[index]=randomNo;
         index++;
-      	
    		}
-		flag=0;
+			flag=0;
 	 }
   System.out.println(randomCount);
   for(int i:a){
