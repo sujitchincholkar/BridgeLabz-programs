@@ -407,7 +407,8 @@ public class Utility {
 		long Time=stopTime-startTime;
 		System.out.println("Total time required"+Time);
 	}
-	public static String TicTacToe(){
+	
+	public static String ticTacToe(){
 		boolean userTurn=false;
 		int gameArray[][]=new int[3][3];
 		int row,cols;
@@ -444,19 +445,19 @@ public class Utility {
 		return "Match Draw";
 	}
 
-
 	private static void printGameArray(int[][] gameArray) {
 		for(int i=0;i<3;i++){
 			for(int j=0;j<3;j++){
 				if(gameArray[i][j]==0){
-					System.out.print("X ");
+					System.out.print("| X |");
 				}else if(gameArray[i][j]==1){
-					System.out.print("O ");
+					System.out.print("| O |");
 				}else{
-					System.out.print("  ");
+					System.out.print("|   |");
 				}
 			}
 			System.out.println();
+			System.out.println("===============");
 		}
 		
 	}
@@ -516,5 +517,40 @@ public class Utility {
 		return false;
 	}
 
+	public static int dayOfWeek(int day,int month,int year){
+		 int m0,y0,d0,x;
+		    
+		    y0=year-(14-month)/month;
+		    x=y0+y0/4-y0/100+y0/400;
+		    m0=month+12*((14-month)/12)-2;
+		    d0=(day+x+(31*m0)/12)%7;
+		    return d0;
+	}
 	
+	public static float convertTemperature(float temperature,char currentUnit){
+		float conversion=0.0f;
+		if(currentUnit=='f'||currentUnit=='F'){
+			conversion=(temperature-32)*((float)5/9);
+		}else if(currentUnit=='c'||currentUnit=='C'){
+			conversion=(temperature*((float)9/5))+32;
+		}
+		return conversion;
+	}
+	
+	public static float monthlyPayment(float payment,float rate,float year){
+		float monthlyPay=0.0f;
+		int months =(int)(12*year);
+		float r=rate*((float)rate/12*100);
+		monthlyPay=(float) ((payment*r)/(1-Math.pow(1+r,-months)));
+		return monthlyPay;
+	}
+	public static double sqrt(int number){
+		 double epslion=1e-15;
+	     double t=number;
+	     
+	       while(Math.abs(t- number/t)> epslion*t) {
+	         t=(number/t+t)/2;
+	       }
+	       return t;
+	}
 }

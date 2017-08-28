@@ -6,7 +6,7 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String result=Utility.TicTacToe();
+		String result=Utility.ticTacToe();
         System.out.println(result);
 	}
 
