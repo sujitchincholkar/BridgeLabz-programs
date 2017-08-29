@@ -9,7 +9,8 @@ public class PrintPrime {
 		Utility.printPrimes();
 		System.out.println("==============");
 		Utility.printPrimePalindrome();
-		
+		System.out.println("==============");
+		Utility.primeAnagram();
 	}
 
 }

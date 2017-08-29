@@ -16,6 +16,7 @@ public class BubbleSort {
 			arr[i] = sc.nextInt();
 		}
 		Utility.bubbleSort(str);
+		Utility.bubbleSort(arr);
 		System.out.println("Sorted Array");
 		for (int i : arr) {
 			System.out.println(i);

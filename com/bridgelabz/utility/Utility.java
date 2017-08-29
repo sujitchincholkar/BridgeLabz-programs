@@ -9,6 +9,7 @@ package com.bridgelabz.utility;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ import java.util.Scanner;
 public class Utility {
 	static Scanner sc = new Scanner(System.in);
 	static PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out),true);
+	static long start;
 	public static boolean isAnagram(String str1, String str2) {
 		boolean isAnagram = true;
 		char arr1[] = str1.toLowerCase().toCharArray();
@@ -93,6 +95,7 @@ public class Utility {
 	}
 
 	public static boolean binarySearch(int arr[], int num) {
+		long start=System.currentTimeMillis();
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
@@ -113,6 +116,7 @@ public class Utility {
 	}
 
 	public static boolean binarySearch(String arr[], String str) {
+		long start=System.currentTimeMillis();
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
@@ -129,10 +133,12 @@ public class Utility {
 				mid = (low + high) / 2;
 			}
 		}
+		System.out.println("Binary search time"+elapsedTime(start));
 		return isPresent;
 	}
 
 	public static void insertionSort(int arr[]) {
+		long start=System.currentTimeMillis();
 		for (int i = 1; i < arr.length; i++) {
 			int key = arr[i];
 			int j = i - 1;
@@ -142,10 +148,25 @@ public class Utility {
 			}
 			arr[j + 1] = key;
 		}
-
+		System.out.println("Insertion sort time"+elapsedTime(start));
+	}
+	
+	public static void insertionSort(String arr[]) {
+		long start=System.currentTimeMillis();
+		for (int i = 1; i < arr.length; i++) {
+			String key = arr[i];
+			int j = i - 1;
+			while (j >= 0 && arr[j].compareToIgnoreCase(key)>0) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+			arr[j + 1] = key;
+		}
+		System.out.println("Insertion sort"+elapsedTime(start));
 	}
 
 	public static void bubbleSort(int arr[]) {
+		long start=System.currentTimeMillis();
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -156,9 +177,11 @@ public class Utility {
 				}
 			}
 		}
+		System.out.println("Bubble sort time"+elapsedTime(start));
 	}
 
 	public static void bubbleSort(String arr[]) {
+		long start=System.currentTimeMillis();
 		String temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -169,6 +192,7 @@ public class Utility {
 				}
 			}
 		}
+		System.out.println("Bubble sort time"+elapsedTime(start));
 	}
 
 	public static void printName(String name) {
@@ -398,6 +422,7 @@ public class Utility {
 		System.out.println("The no. of such distinct tripletpairs are = "
 				+ count);
 	}
+	
 	public static void stopwatchSimulator(){
 		long startTime=System.currentTimeMillis();
 		for(int i=0;i<1000;i++){
@@ -544,6 +569,7 @@ public class Utility {
 		monthlyPay=(float) ((payment*r)/(1-Math.pow(1+r,-months)));
 		return monthlyPay;
 	}
+	
 	public static double sqrt(int number){
 		 double epslion=1e-15;
 	     double t=number;
@@ -552,5 +578,72 @@ public class Utility {
 	         t=(number/t+t)/2;
 	       }
 	       return t;
+	}
+	
+	public static String toBinary(int number) {
+        int rem;
+        String bin[] = {"0", "1"};
+        String binary = "";
+        int padding=0;
+        while (number > 0 ||padding%8!=0) {
+            rem = number % 2;
+            binary = bin[rem] + binary;
+            number = number / 2;
+            padding++;
+            if(padding%4==0&&number!=0){
+            	binary=" "+binary;
+            	
+            }
+        }
+        return binary;
+    }
+	
+	public static String swappedNibbles(String binary){
+		binary=binary.replaceAll(" ","");
+		String lowerNibble = binary.substring(0, 4);
+		String upperNibble = binary.substring(4, 8);
+		String swappedBinary=upperNibble+lowerNibble;
+		return swappedBinary;
+	}
+	public static boolean isPowerOfTwo(int number){
+		int power=0;
+		int division=number;
+		while(division>1){
+			division=division/2;
+			power++;
+		}
+		return number==(int)Math.pow(2, power);
+	}
+	public static int binaryToDecimal(String binary){
+		int decimal=0,power=0;
+		binary =binary.replaceAll(" ","");
+		int index = binary.length()-1;	
+		while(index>=0){
+			decimal=(int) (Integer.parseInt(binary.charAt(index)+"")*Math.pow(2, power));
+			power++;
+			index--;
+		}
+		return decimal;
+ 
+	}
+	public static void primeAnagram(){
+		ArrayList<String> primes=new ArrayList<>();
+		for(int i=0;i<1000;i++){
+			if(isPrime(i)){
+				primes.add(String.valueOf(i));
+			}
+		}
+		for(int i=0;i<primes.size();i++){
+			for(int j=i+1;j<primes.size();j++){
+				if(isAnagram(primes.get(i),primes.get(j))){
+					System.out.println(primes.get(i)+" "+primes.get(j)+" are anagram");
+				}
+			}
+		}
+		
+	}
+	public static long elapsedTime(long start){
+		long end=System.currentTimeMillis();
+		return end-start;
 	}
 }
