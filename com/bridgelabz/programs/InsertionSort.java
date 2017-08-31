@@ -17,7 +17,11 @@ public class InsertionSort {
         for(int e:arr){
         	System.out.println(e);
         }
-		String strArr[]={"xyz","abc","pqr"};
+		String strArr[]=new String[5];
+		System.out.println("Enter array of 5 words");
+		for(int i=0;i<5;i++){
+			strArr[i]=sc.next();
+		}
 		Utility.insertionSort(strArr);
         for(String e:strArr){
         	System.out.println(e);

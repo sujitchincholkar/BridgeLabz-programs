@@ -24,6 +24,7 @@ public class BubbleSort {
 		for (String i : str) {
 			System.out.println(i);
 		}
+		sc.close();
 	}
 
 }
