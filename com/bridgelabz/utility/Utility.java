@@ -7,6 +7,12 @@
  ***********************************************/
 package com.bridgelabz.utility;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,7 +23,7 @@ import java.util.Scanner;
 public class Utility {
 	static Scanner sc = new Scanner(System.in);
 	static PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out),true);
-	static long start;
+	
 	public static boolean isAnagram(String str1, String str2) {
 		boolean isAnagram = true;
 		char arr1[] = str1.toLowerCase().toCharArray();
@@ -624,6 +630,7 @@ public class Utility {
 		return decimal;
  
 	}
+	
 	public static void primeAnagram(){
 		ArrayList<String> primes=new ArrayList<>();
 		for(int i=0;i<1000;i++){
@@ -640,6 +647,7 @@ public class Utility {
 		}
 		
 	}
+	
 	public static long elapsedTime(long start){
 		long end=System.currentTimeMillis();
 		return end-start;
@@ -664,8 +672,11 @@ public class Utility {
 	public static String[] mergeSort(String arr[]){
 		String firstArray[]=new String[arr.length/2];
 		String secondArray[]=new String[arr.length-(arr.length/2)];
-		int j=0;
 		
+		int j=0;
+		if(arr.length==1){
+			return arr;
+		}
 		for(int i=0;i<firstArray.length;i++){
 			firstArray[i]=arr[i];
 		}
@@ -677,10 +688,9 @@ public class Utility {
 		
 		firstArray = mergeSort(firstArray);
 		secondArray = mergeSort(secondArray);
-		if(firstArray.length==1){
-			return firstArray;
-			
-		}
+		
+		
+		
 		
 		String[] returnArray = new String[arr.length];
 		int firstIndex = 0, secondIndex= 0;
@@ -706,9 +716,45 @@ public class Utility {
 		return returnArray;
 		
 	
-}
+	}
 	
-
+	public static String[] readFile(String filePath){
+		String words[]={};
+		String line;
+		BufferedReader bufferedReader;
+		FileReader file;
+		try {
+			file = new FileReader(filePath);
+			bufferedReader = new BufferedReader(file);
+			while((line=bufferedReader.readLine())!=null){
+				words=line.split(",|\\s");
+			}	
+			bufferedReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return words;
+	}
+	public static void writeFile(String word,String filePath) {
+		
+		try {
+			FileWriter writer=new FileWriter(filePath,true);
+			out =new PrintWriter(writer);
+			out.println(word);
+			out.close();
+			writer.close();
+		} catch (FileNotFoundException e) {
+		
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public static void returnNotes(int noteCounts[],int change,int pos){
 		int notes[]={1000,500,100,50,10,2,1};
 		if(pos<notes.length){
@@ -725,6 +771,7 @@ public class Utility {
 		
 	}
 	
+
 		
 	}
 

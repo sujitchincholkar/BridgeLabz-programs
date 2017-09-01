@@ -16,7 +16,7 @@ public class VendingMachine {
 			if(noteCount[i]!=0)
 				System.out.println(notes[i]+" Rs note= "+noteCount[i]);
 		}
-
+		
 	}
 
 }
