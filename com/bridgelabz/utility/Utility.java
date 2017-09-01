@@ -95,7 +95,7 @@ public class Utility {
 	}
 
 	public static boolean binarySearch(int arr[], int num) {
-		long start=System.currentTimeMillis();
+		
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
@@ -116,29 +116,27 @@ public class Utility {
 	}
 
 	public static boolean binarySearch(String arr[], String str) {
-		long start=System.currentTimeMillis();
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
 		int mid = high / 2;
 		while (high >= low) {
-			if (arr[mid].compareTo(str) == 0) {
+			if (arr[mid].equalsIgnoreCase(str) ) {
 				isPresent = true;
 				break;
 			} else if (arr[mid].compareToIgnoreCase(str) < 0) {
-				high = mid - 1;
-				mid = (low + high) / 2;
-			} else if (arr[mid].compareToIgnoreCase(str) > 0) {
 				low = mid + 1;
 				mid = (low + high) / 2;
+			} else if (arr[mid].compareToIgnoreCase(str) > 0) {
+				high = mid - 1;
+				mid = (low + high) / 2;
 			}
-		}
-		System.out.println("Binary search time"+elapsedTime(start));
+		}	
 		return isPresent;
 	}
 
 	public static void insertionSort(int arr[]) {
-		long start=System.currentTimeMillis();
+		
 		for (int i = 1; i < arr.length; i++) {
 			int key = arr[i];
 			int j = i - 1;
@@ -148,11 +146,11 @@ public class Utility {
 			}
 			arr[j + 1] = key;
 		}
-		System.out.println("Insertion sort time"+elapsedTime(start));
+		
 	}
 	
 	public static void insertionSort(String arr[]) {
-		long start=System.currentTimeMillis();
+		
 		for (int i = 1; i < arr.length; i++) {
 			String key = arr[i];
 			int j = i - 1;
@@ -162,11 +160,11 @@ public class Utility {
 			}
 			arr[j + 1] = key;
 		}
-		System.out.println("Insertion sort"+elapsedTime(start));
+		
 	}
 
 	public static void bubbleSort(int arr[]) {
-		long start=System.currentTimeMillis();
+		
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -177,11 +175,10 @@ public class Utility {
 				}
 			}
 		}
-		System.out.println("Bubble sort time"+elapsedTime(start));
+
 	}
 
 	public static void bubbleSort(String arr[]) {
-		long start=System.currentTimeMillis();
 		String temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -192,7 +189,6 @@ public class Utility {
 				}
 			}
 		}
-		System.out.println("Bubble sort time"+elapsedTime(start));
 	}
 
 	public static void printName(String name) {
@@ -605,6 +601,7 @@ public class Utility {
 		String swappedBinary=upperNibble+lowerNibble;
 		return swappedBinary;
 	}
+	
 	public static boolean isPowerOfTwo(int number){
 		int power=0;
 		int division=number;
@@ -614,6 +611,7 @@ public class Utility {
 		}
 		return number==(int)Math.pow(2, power);
 	}
+	
 	public static int binaryToDecimal(String binary){
 		int decimal=0,power=0;
 		binary =binary.replaceAll(" ","");
@@ -646,4 +644,87 @@ public class Utility {
 		long end=System.currentTimeMillis();
 		return end-start;
 	}
+
+	public static void findNumber(int first,int last) {
+		int middle=(first+last)/2;
+		if(first<last){
+			System.out.println("Is your number between "+first+" and " +middle+ " [y/n]:");
+			char choice =sc.next().charAt(0);
+			if(choice=='y' || choice=='Y'){
+				findNumber(first,middle);
+			
+			}else{
+				findNumber(middle+1,last);
+			}
+		} else if(first==last){
+			System.out.println("Number is "+last);
+		}
+	}
+	
+	public static String[] mergeSort(String arr[]){
+		String firstArray[]=new String[arr.length/2];
+		String secondArray[]=new String[arr.length-(arr.length/2)];
+		int j=0;
+		
+		for(int i=0;i<firstArray.length;i++){
+			firstArray[i]=arr[i];
+		}
+		
+		for(int i=firstArray.length;i<arr.length;i++){
+			secondArray[j]=arr[i];
+			j++;
+		}
+		
+		firstArray = mergeSort(firstArray);
+		secondArray = mergeSort(secondArray);
+		if(firstArray.length==1){
+			return firstArray;
+			
+		}
+		
+		String[] returnArray = new String[arr.length];
+		int firstIndex = 0, secondIndex= 0;
+		for(int i = 0; i < returnArray.length; i++){
+			if(secondIndex == secondArray.length){
+				returnArray[i] = firstArray[firstIndex];
+				firstIndex++;
+			}
+			else if(firstIndex == firstArray.length){
+				returnArray[i] = secondArray[secondIndex];
+				secondIndex++;
+			}
+			else if(firstArray[firstIndex].compareTo(secondArray[secondIndex]) > 0){
+				returnArray[i] = secondArray[secondIndex];
+				secondIndex++;
+			}
+			else{
+				returnArray[i] = firstArray[firstIndex];
+				firstIndex++;
+			}
+		}
+
+		return returnArray;
+		
+	
 }
+	
+
+	public static void returnNotes(int noteCounts[],int change,int pos){
+		int notes[]={1000,500,100,50,10,2,1};
+		if(pos<notes.length){
+		if(change<notes[pos]){
+			returnNotes(noteCounts,change,++pos);
+		}
+		else{
+			change=change-notes[pos];
+			noteCounts[pos]++;
+			returnNotes(noteCounts,change,pos);
+		}
+		}
+			
+		
+	}
+	
+		
+	}
+
