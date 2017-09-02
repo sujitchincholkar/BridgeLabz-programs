@@ -20,10 +20,13 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 public class Utility {
 	static Scanner sc = new Scanner(System.in);
-	static PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out),true);
-	
+	static PrintWriter out = new PrintWriter(
+			new OutputStreamWriter(System.out), true);
+
 	public static boolean isAnagram(String str1, String str2) {
 		boolean isAnagram = true;
 		char arr1[] = str1.toLowerCase().toCharArray();
@@ -101,7 +104,7 @@ public class Utility {
 	}
 
 	public static boolean binarySearch(int arr[], int num) {
-		
+
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
@@ -121,28 +124,28 @@ public class Utility {
 		return isPresent;
 	}
 
-	public static boolean binarySearch(String arr[], String str) {
+	public static <T extends Comparable<T>>boolean binarySearch(T arr[], T str) {
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
 		int mid = high / 2;
 		while (high >= low) {
-			if (arr[mid].equalsIgnoreCase(str) ) {
+			if (arr[mid].compareTo(str)==0) {
 				isPresent = true;
 				break;
-			} else if (arr[mid].compareToIgnoreCase(str) < 0) {
+			} else if (arr[mid].compareTo(str) < 0) {
 				low = mid + 1;
 				mid = (low + high) / 2;
-			} else if (arr[mid].compareToIgnoreCase(str) > 0) {
+			} else if (arr[mid].compareTo(str) > 0) {
 				high = mid - 1;
 				mid = (low + high) / 2;
 			}
-		}	
+		}
 		return isPresent;
 	}
 
 	public static void insertionSort(int arr[]) {
-		
+
 		for (int i = 1; i < arr.length; i++) {
 			int key = arr[i];
 			int j = i - 1;
@@ -152,25 +155,38 @@ public class Utility {
 			}
 			arr[j + 1] = key;
 		}
-		
+
 	}
-	
-	public static void insertionSort(String arr[]) {
-		
+
+	/*public static void insertionSort(String arr[]) {
+
 		for (int i = 1; i < arr.length; i++) {
 			String key = arr[i];
 			int j = i - 1;
-			while (j >= 0 && arr[j].compareToIgnoreCase(key)>0) {
+			while (j >= 0 && arr[j].compareToIgnoreCase(key) > 0) {
 				arr[j + 1] = arr[j];
 				j--;
 			}
 			arr[j + 1] = key;
 		}
-		
+
+	}*/
+	public static <T extends Comparable<T>>void insertionSort(T arr[]) {
+
+		for (int i = 1; i < arr.length; i++) {
+			T key = arr[i];
+			int j = i - 1;
+			while (j >= 0 && arr[j].compareTo(key) > 0) {
+				arr[j + 1] = arr[j];
+				j--;
+			}
+			arr[j + 1] = key;
+		}
+
 	}
 
 	public static void bubbleSort(int arr[]) {
-		
+
 		int temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -184,11 +200,11 @@ public class Utility {
 
 	}
 
-	public static void bubbleSort(String arr[]) {
-		String temp;
+	public static <T extends Comparable<T>>void bubbleSort(T arr[]) {
+		T temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
-				if (arr[j].compareToIgnoreCase(arr[j + 1]) > 0) {
+				if (arr[j].compareTo(arr[j + 1]) > 0) {
 					temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
@@ -377,7 +393,7 @@ public class Utility {
 		System.out.println("==Array==");
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				out.print(arr[i][j]+" ");
+				out.print(arr[i][j] + " ");
 			}
 			out.println();
 		}
@@ -389,7 +405,7 @@ public class Utility {
 		if (arr.length > 0) {
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
-					out.print(arr[i][j]+" ");
+					out.print(arr[i][j] + " ");
 				}
 				out.println();
 			}
@@ -401,7 +417,7 @@ public class Utility {
 		if (arr.length > 0) {
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
-					out.print(arr[i][j]+" ");
+					out.print(arr[i][j] + " ");
 				}
 				out.println();
 			}
@@ -424,98 +440,100 @@ public class Utility {
 		System.out.println("The no. of such distinct tripletpairs are = "
 				+ count);
 	}
-	
-	public static void stopwatchSimulator(){
-		long startTime=System.currentTimeMillis();
-		for(int i=0;i<1000;i++){
-			
+
+	public static void stopwatchSimulator() {
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 1000; i++) {
+
 		}
-		long stopTime=System.currentTimeMillis();
-		long Time=stopTime-startTime;
-		System.out.println("Total time required"+Time);
+		long stopTime = System.currentTimeMillis();
+		long Time = stopTime - startTime;
+		System.out.println("Total time required" + Time);
 	}
-	
-	public static String ticTacToe(){
-		boolean userTurn=false;
-		int gameArray[][]=new int[3][3];
-		int row,cols;
-		
-		for(int i=0;i<3;i++){
-			for(int j=0;j<3;j++){
-				gameArray[i][j]=-1;
+
+	public static String ticTacToe() {
+		boolean userTurn = false;
+		int gameArray[][] = new int[3][3];
+		int row, cols;
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				gameArray[i][j] = -1;
 			}
 		}
-		for(int k=0;k<9;k++){
-			
-			if(userTurn){
-				userTurn(gameArray);  
-				userTurn=false;
+		for (int k = 0; k < 9; k++) {
+
+			if (userTurn) {
+				userTurn(gameArray);
+				userTurn = false;
 				printGameArray(gameArray);
-				if(checkWin(gameArray,0)){
+				if (checkWin(gameArray, 0)) {
 					return "You Won";
 				}
-					
-				}else {
-					System.out.println("Computer's Turn");
-					 computerTurn(gameArray);
-					 userTurn=true;
-					 printGameArray(gameArray);
-					 if(checkWin(gameArray,1)){
-							return "Computer Won";
-						}
-					 
+
+			} else {
+				System.out.println("Computer's Turn");
+				computerTurn(gameArray);
+				userTurn = true;
+				printGameArray(gameArray);
+				if (checkWin(gameArray, 1)) {
+					return "Computer Won";
 				}
-				
-				
+
 			}
-		
+
+		}
+
 		return "Match Draw";
 	}
 
 	private static void printGameArray(int[][] gameArray) {
-		for(int i=0;i<3;i++){
-			for(int j=0;j<3;j++){
-				if(gameArray[i][j]==0){
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (gameArray[i][j] == 0) {
 					System.out.print("| X |");
-				}else if(gameArray[i][j]==1){
+				} else if (gameArray[i][j] == 1) {
 					System.out.print("| O |");
-				}else{
+				} else {
 					System.out.print("|   |");
 				}
 			}
 			System.out.println();
 			System.out.println("===============");
 		}
-		
+
 	}
 
 	private static void computerTurn(int[][] gameArray) {
-		
-		Random random=new Random();
-		int row= random.nextInt(3);
-		int cols= random.nextInt(3);
-		if(isValidTurn(gameArray,row,cols)){
-			gameArray[row][cols]=1;
-		} 
-		else {
+
+		Random random = new Random();
+		int row = random.nextInt(3);
+		int cols = random.nextInt(3);
+		if (isValidTurn(gameArray, row, cols)) {
+			gameArray[row][cols] = 1;
+		} else {
 			computerTurn(gameArray);
 		}
-		
+
 	}
 
-	private static boolean checkWin(int[][] gameArray,int i) {
+	private static boolean checkWin(int[][] gameArray, int i) {
 		for (int j = 0; j < 3; j++) {
-			if (gameArray[j][0] == i && gameArray[j][1] == i && gameArray[j][2] == i) {
+			if (gameArray[j][0] == i && gameArray[j][1] == i
+					&& gameArray[j][2] == i) {
 				return true;
 			}
-			if (gameArray[0][j] == i && gameArray[1][j] == i && gameArray[2][j] == i) {
+			if (gameArray[0][j] == i && gameArray[1][j] == i
+					&& gameArray[2][j] == i) {
 				return true;
 			}
 		}
-		if(gameArray[0][0] == i && gameArray[1][1] == i && gameArray[2][2] == i){
+		if (gameArray[0][0] == i && gameArray[1][1] == i
+				&& gameArray[2][2] == i) {
 			return true;
 		}
-		if(gameArray[0][2] == i && gameArray[1][1] == i && gameArray[2][0] == i){
+		if (gameArray[0][2] == i && gameArray[1][1] == i
+				&& gameArray[2][0] == i) {
 			return true;
 		}
 		return false;
@@ -525,210 +543,262 @@ public class Utility {
 		System.out.println("Your Turn....");
 		System.out.println("Enter Position");
 		System.out.print("Row=");
-		int row=sc.nextInt()-1;
+		int row = sc.nextInt() - 1;
 		System.out.print("Column=");
-		int cols= sc.nextInt()-1;
-		if(isValidTurn(gameArray,row,cols)){
-			gameArray[row][cols]=0;
-		} 
-		else {
+		int cols = sc.nextInt() - 1;
+		if (isValidTurn(gameArray, row, cols)) {
+			gameArray[row][cols] = 0;
+		} else {
 			userTurn(gameArray);
 		}
-		
+
 	}
 
 	private static boolean isValidTurn(int[][] gameArray, int row, int cols) {
-		if(gameArray[row][cols]==-1){
+		if (gameArray[row][cols] == -1) {
 			return true;
 		}
 		return false;
 	}
 
-	public static int dayOfWeek(int day,int month,int year){
-		 int m0,y0,d0,x;
-		    
-		    y0=year-(14-month)/month;
-		    x=y0+y0/4-y0/100+y0/400;
-		    m0=month+12*((14-month)/12)-2;
-		    d0=(day+x+(31*m0)/12)%7;
-		    return d0;
+	public static int dayOfWeek(int day, int month, int year) {
+		int m0, y0, d0, x;
+
+		y0 = year - (14 - month) / month;
+		x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
+		m0 = month + 12 * ((14 - month) / 12) - 2;
+		d0 = (day + x + (31 * m0) / 12) % 7;
+		return d0;
 	}
-	
-	public static float convertTemperature(float temperature,char currentUnit){
-		float conversion=0.0f;
-		if(currentUnit=='f'||currentUnit=='F'){
-			conversion=(temperature-32)*((float)5/9);
-		}else if(currentUnit=='c'||currentUnit=='C'){
-			conversion=(temperature*((float)9/5))+32;
+
+	public static float convertTemperature(float temperature, char currentUnit) {
+		float conversion = 0.0f;
+		if (currentUnit == 'f' || currentUnit == 'F') {
+			conversion = (temperature - 32) * ((float) 5 / 9);
+		} else if (currentUnit == 'c' || currentUnit == 'C') {
+			conversion = (temperature * ((float) 9 / 5)) + 32;
 		}
 		return conversion;
 	}
-	
-	public static float monthlyPayment(float payment,float rate,float year){
-		float monthlyPay=0.0f;
-		int months =(int)(12*year);
-		float r=rate*((float)rate/12*100);
-		monthlyPay=(float) ((payment*r)/(1-Math.pow(1+r,-months)));
+
+	public static float monthlyPayment(float payment, float rate, float year) {
+		float monthlyPay = 0.0f;
+		int months = (int) (12 * year);
+		float r = rate * ((float) rate / 12 * 100);
+		monthlyPay = (float) ((payment * r) / (1 - Math.pow(1 + r, -months)));
 		return monthlyPay;
 	}
-	
-	public static double sqrt(int number){
-		 double epslion=1e-15;
-	     double t=number;
-	     
-	       while(Math.abs(t- number/t)> epslion*t) {
-	         t=(number/t+t)/2;
-	       }
-	       return t;
+
+	public static double sqrt(int number) {
+		double epslion = 1e-15;
+		double t = number;
+
+		while (Math.abs(t - number / t) > epslion * t) {
+			t = (number / t + t) / 2;
+		}
+		return t;
 	}
-	
+
 	public static String toBinary(int number) {
-        int rem;
-        String bin[] = {"0", "1"};
-        String binary = "";
-        int padding=0;
-        while (number > 0 ||padding%8!=0) {
-            rem = number % 2;
-            binary = bin[rem] + binary;
-            number = number / 2;
-            padding++;
-            if(padding%4==0&&number!=0){
-            	binary=" "+binary;
-            	
-            }
-        }
-        return binary;
-    }
-	
-	public static String swappedNibbles(String binary){
-		binary=binary.replaceAll(" ","");
+		int rem;
+		String bin[] = { "0", "1" };
+		String binary = "";
+		int padding = 0;
+		while (number > 0 || padding % 8 != 0) {
+			rem = number % 2;
+			binary = bin[rem] + binary;
+			number = number / 2;
+			padding++;
+			if (padding % 4 == 0 && number != 0) {
+				binary = " " + binary;
+
+			}
+		}
+		return binary;
+	}
+
+	public static String swappedNibbles(String binary) {
+		binary = binary.replaceAll(" ", "");
 		String lowerNibble = binary.substring(0, 4);
 		String upperNibble = binary.substring(4, 8);
-		String swappedBinary=upperNibble+lowerNibble;
+		String swappedBinary = upperNibble + lowerNibble;
 		return swappedBinary;
 	}
-	
-	public static boolean isPowerOfTwo(int number){
-		int power=0;
-		int division=number;
-		while(division>1){
-			division=division/2;
+
+	public static boolean isPowerOfTwo(int number) {
+		int power = 0;
+		int division = number;
+		while (division > 1) {
+			division = division / 2;
 			power++;
 		}
-		return number==(int)Math.pow(2, power);
+		return number == (int) Math.pow(2, power);
 	}
-	
-	public static int binaryToDecimal(String binary){
-		int decimal=0,power=0;
-		binary =binary.replaceAll(" ","");
-		int index = binary.length()-1;	
-		while(index>=0){
-			decimal=(int) (Integer.parseInt(binary.charAt(index)+"")*Math.pow(2, power));
+
+	public static int binaryToDecimal(String binary) {
+		int decimal = 0, power = 0;
+		binary = binary.replaceAll(" ", "");
+		int index = binary.length() - 1;
+		while (index >= 0) {
+			decimal = (int) (Integer.parseInt(binary.charAt(index) + "") * Math
+					.pow(2, power));
 			power++;
 			index--;
 		}
 		return decimal;
- 
+
 	}
-	
-	public static void primeAnagram(){
-		ArrayList<String> primes=new ArrayList<>();
-		for(int i=0;i<1000;i++){
-			if(isPrime(i)){
+
+	public static void primeAnagram() {
+		ArrayList<String> primes = new ArrayList<>();
+		for (int i = 0; i < 1000; i++) {
+			if (isPrime(i)) {
 				primes.add(String.valueOf(i));
 			}
 		}
-		for(int i=0;i<primes.size();i++){
-			for(int j=i+1;j<primes.size();j++){
-				if(isAnagram(primes.get(i),primes.get(j))){
-					System.out.println(primes.get(i)+" "+primes.get(j)+" are anagram");
+		for (int i = 0; i < primes.size(); i++) {
+			for (int j = i + 1; j < primes.size(); j++) {
+				if (isAnagram(primes.get(i), primes.get(j))) {
+					System.out.println(primes.get(i) + " " + primes.get(j)
+							+ " are anagram");
 				}
 			}
 		}
-		
-	}
-	
-	public static long elapsedTime(long start){
-		long end=System.currentTimeMillis();
-		return end-start;
+
 	}
 
-	public static void findNumber(int first,int last) {
-		int middle=(first+last)/2;
-		if(first<last){
-			System.out.println("Is your number between "+first+" and " +middle+ " [y/n]:");
-			char choice =sc.next().charAt(0);
-			if(choice=='y' || choice=='Y'){
-				findNumber(first,middle);
-			
-			}else{
-				findNumber(middle+1,last);
+	public static long elapsedTime(long start) {
+		long end = System.currentTimeMillis();
+		return end - start;
+	}
+
+	public static void findNumber(int first, int last) {
+		int middle = (first + last) / 2;
+		if (first < last) {
+			System.out.println("Is your number between " + first + " and "
+					+ middle + " [y/n]:");
+			char choice = sc.next().charAt(0);
+			if (choice == 'y' || choice == 'Y') {
+				findNumber(first, middle);
+
+			} else {
+				findNumber(middle + 1, last);
 			}
-		} else if(first==last){
-			System.out.println("Number is "+last);
+		} else if (first == last) {
+			System.out.println("Number is " + last);
 		}
 	}
-	
-	public static String[] mergeSort(String arr[]){
-		String firstArray[]=new String[arr.length/2];
-		String secondArray[]=new String[arr.length-(arr.length/2)];
-		
-		int j=0;
-		if(arr.length==1){
+
+	/*public static String[] mergeSort(String arr[]) {
+		String firstArray[] = new String[arr.length / 2];
+		String secondArray[] = new String[arr.length - (arr.length / 2)];
+
+		int j = 0;
+		if (arr.length == 1) {
 			return arr;
 		}
-		for(int i=0;i<firstArray.length;i++){
-			firstArray[i]=arr[i];
+		for (int i = 0; i < firstArray.length; i++) {
+			firstArray[i] = arr[i];
 		}
-		
-		for(int i=firstArray.length;i<arr.length;i++){
-			secondArray[j]=arr[i];
+
+		for (int i = firstArray.length; i < arr.length; i++) {
+			secondArray[j] = arr[i];
 			j++;
 		}
-		
+
 		firstArray = mergeSort(firstArray);
 		secondArray = mergeSort(secondArray);
-		
-		
-		
-		
+
 		String[] returnArray = new String[arr.length];
-		int firstIndex = 0, secondIndex= 0;
-		for(int i = 0; i < returnArray.length; i++){
-			if(secondIndex == secondArray.length){
+		int firstIndex = 0, secondIndex = 0;
+		for (int i = 0; i < returnArray.length; i++) {
+			if (secondIndex == secondArray.length) {
 				returnArray[i] = firstArray[firstIndex];
 				firstIndex++;
-			}
-			else if(firstIndex == firstArray.length){
+			} else if (firstIndex == firstArray.length) {
 				returnArray[i] = secondArray[secondIndex];
 				secondIndex++;
-			}
-			else if(firstArray[firstIndex].compareTo(secondArray[secondIndex]) > 0){
+			} else if (firstArray[firstIndex]
+					.compareTo(secondArray[secondIndex]) > 0) {
 				returnArray[i] = secondArray[secondIndex];
 				secondIndex++;
-			}
-			else{
+			} else {
 				returnArray[i] = firstArray[firstIndex];
 				firstIndex++;
 			}
 		}
 
 		return returnArray;
+
+	}*/
+	/**
+	 * @param <T>
+	 * @param arr
+	 * @return sorted array
+	 * This Method returns sorted array
+	 */
+	public static <T extends Comparable<T>>T[] mergeSort(T arr[]) {
 		
-	
+		T firstArray[] = (T[])new Object[arr.length / 2];
+		T secondArray[] = (T[])new Object[arr.length - (arr.length / 2)];
+
+		int j = 0;
+		if (arr.length == 1) {
+			return arr;
+		}
+		for (int i = 0; i < firstArray.length; i++) {
+			firstArray[i] = arr[i];
+		}
+
+		for (int i = firstArray.length; i < arr.length; i++) {
+			secondArray[j] = arr[i];
+			j++;
+		}
+
+		firstArray = mergeSort(firstArray);
+		secondArray = mergeSort(secondArray);
+
+		T[] returnArray = (T[])new Object[arr.length];
+		int firstIndex = 0, secondIndex = 0;
+		for (int i = 0; i < returnArray.length; i++) {
+			if (secondIndex == secondArray.length) {
+				returnArray[i] = firstArray[firstIndex];
+				firstIndex++;
+			} else if (firstIndex == firstArray.length) {
+				returnArray[i] = secondArray[secondIndex];
+				secondIndex++;
+			} else if (firstArray[firstIndex]
+					.compareTo(secondArray[secondIndex]) > 0) {
+				returnArray[i] = secondArray[secondIndex];
+				secondIndex++;
+			} else {
+				returnArray[i] = firstArray[firstIndex];
+				firstIndex++;
+			}
+		}
+
+		return returnArray;
+
 	}
-	
-	public static String[] readFile(String filePath){
-		String words[]={};
-		String line;
+
+	public static String[] readFile(String filePath) {
+		String words[]={} ;
+		ArrayList<String> lines=new ArrayList<String>();
+		String line,temp[]={};
 		BufferedReader bufferedReader;
 		FileReader file;
+		int index=0;
 		try {
 			file = new FileReader(filePath);
 			bufferedReader = new BufferedReader(file);
-			while((line=bufferedReader.readLine())!=null){
-				words=line.split(",|\\s");
-			}	
+			while ((line = bufferedReader.readLine()) != null) {
+				temp=line.split(",|\\s");
+				for(int i=0;i<temp.length;i++){
+					lines.add(temp[i]);
+					
+				}
+			}
+			words=lines.toArray(new String[lines.size()]);
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -736,42 +806,39 @@ public class Utility {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return words;
 	}
-	public static void writeFile(String word,String filePath) {
-		
+
+	public static void writeFile(String word, String filePath) {
+
 		try {
-			FileWriter writer=new FileWriter(filePath,true);
-			out =new PrintWriter(writer);
+			FileWriter writer = new FileWriter(filePath, true);
+			out = new PrintWriter(writer);
 			out.println(word);
 			out.close();
 			writer.close();
 		} catch (FileNotFoundException e) {
-		
+
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public static void returnNotes(int noteCounts[],int change,int pos){
-		int notes[]={1000,500,100,50,10,2,1};
-		if(pos<notes.length){
-		if(change<notes[pos]){
-			returnNotes(noteCounts,change,++pos);
+
+	public static void returnNotes(int noteCounts[], int change, int pos) {
+		int notes[] = { 1000, 500, 100, 50, 10, 2, 1 };
+		if (pos < notes.length) {
+			if (change < notes[pos]) {
+				returnNotes(noteCounts, change, ++pos);
+			} else {
+				change = change - notes[pos];
+				noteCounts[pos]++;
+				returnNotes(noteCounts, change, pos);
+			}
 		}
-		else{
-			change=change-notes[pos];
-			noteCounts[pos]++;
-			returnNotes(noteCounts,change,pos);
-		}
-		}
-			
-		
 	}
+
 	
-
-		
-	}
-
+}

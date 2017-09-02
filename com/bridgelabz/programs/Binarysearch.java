@@ -7,8 +7,8 @@ import com.bridgelabz.utility.Utility;
 public class Binarysearch {
 
 	public static void main(String[] args) {
-		int arr[] = { 3, 4, 6, 11, 15, 38 };
-		String strArray[] = { "Abcd", "high", "new", "xyz" };
+		Integer arr[] = { 3, 4, 6, 11, 15, 38 };
+		String strArray[] = { "abcd", "high", "new", "xyz" };
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter number to search");
 		int num = sc.nextInt();

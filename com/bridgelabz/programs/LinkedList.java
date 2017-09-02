@@ -23,7 +23,7 @@ public class LinkedList<T> {
 	}
 
 	public void add(T data) {
-		Node<T> node = new Node(data);
+		Node<T> node = new Node<T>(data);
 		if (this.isEmpty()) {
 			root = node;
 			current = node;
@@ -50,23 +50,6 @@ public class LinkedList<T> {
 		}
 	}
 
-	public void insert(int pos, T data) {
-		int tempPos = 0;
-		Node<T> node = new Node(data);
-		Node tempCurrent, tempPrev;
-		tempCurrent = tempPrev = root;
-		if (size < pos) {
-			add(data);
-		} else {
-			while (pos != tempPos) {
-				tempPrev = tempCurrent;
-				tempCurrent = tempCurrent.next;
-				tempPos++;
-			}
-			tempPrev.next = node;
-			node.next = tempCurrent;
-		}
-	}
 
 	public int size() {
 		Node temp = root;
@@ -127,11 +110,8 @@ public class LinkedList<T> {
 		return tempData;
 		
 	}
-	public void append(T item){
-		add(item);
-	}
-	public void link(){
-		Node temp=root;
+	public void printList(){
+		Node<T> temp=root;
 		while(temp!=null){
 			System.out.println(temp.data);
 			temp=temp.next;
