@@ -15,6 +15,7 @@ public class OrderedList<T extends Comparable<T>> extends LinkedList<T> {
 		} else if (current.data.compareTo(data) < 0) {
 			current.next = newNode;
 			newNode.next = null;
+			current=newNode;
 		} else {
 			while (tempCurrent != null) {
 				if (tempCurrent.data.compareTo(data) > 0) {

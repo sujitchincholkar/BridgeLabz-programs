@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.bridgelabz.programs.Compare;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class Utility {
@@ -732,43 +733,45 @@ public class Utility {
 
 	}*/
 	/**
-	 * @param <T>
+	 * @param Compare
 	 * @param arr
 	 * @return sorted array
 	 * This Method returns sorted array
 	 */
-	public static <T extends Comparable<T>>T[] mergeSort(T arr[]) {
+	public static <T extends Comparable<T>> Compare[] mergeSort(Compare<T> arr[]) {
 		
-		T firstArray[] = (T[])new Object[arr.length / 2];
-		T secondArray[] = (T[])new Object[arr.length - (arr.length / 2)];
-
+		Compare<T> firstArray[] =  new Compare[arr.length/2] ;
+		Compare<T> secondArray[] =  new Compare[arr.length-arr.length/2] ;
 		int j = 0;
 		if (arr.length == 1) {
 			return arr;
 		}
 		for (int i = 0; i < firstArray.length; i++) {
-			firstArray[i] = arr[i];
+			firstArray[i]=new Compare();
+			firstArray[i].value =  arr[i].value;
 		}
 
 		for (int i = firstArray.length; i < arr.length; i++) {
-			secondArray[j] = arr[i];
+			secondArray[j]=new Compare();
+			secondArray[j].value =arr[i].value;
 			j++;
 		}
 
 		firstArray = mergeSort(firstArray);
 		secondArray = mergeSort(secondArray);
 
-		T[] returnArray = (T[])new Object[arr.length];
+		Compare<T>[] returnArray = new Compare[arr.length];
 		int firstIndex = 0, secondIndex = 0;
 		for (int i = 0; i < returnArray.length; i++) {
+			returnArray[i]=new Compare();
 			if (secondIndex == secondArray.length) {
 				returnArray[i] = firstArray[firstIndex];
 				firstIndex++;
 			} else if (firstIndex == firstArray.length) {
 				returnArray[i] = secondArray[secondIndex];
 				secondIndex++;
-			} else if (firstArray[firstIndex]
-					.compareTo(secondArray[secondIndex]) > 0) {
+			} else if (firstArray[firstIndex].value
+					.compareTo(secondArray[secondIndex].value) > 0) {
 				returnArray[i] = secondArray[secondIndex];
 				secondIndex++;
 			} else {
@@ -781,6 +784,12 @@ public class Utility {
 
 	}
 
+	/**
+	 * @param filePath
+	 * @return String array
+	 * This method read words into String array from 
+	 * given filePath and return it
+	 */
 	public static String[] readFile(String filePath) {
 		String words[]={} ;
 		ArrayList<String> lines=new ArrayList<String>();
@@ -810,11 +819,16 @@ public class Utility {
 		return words;
 	}
 
-	public static void writeFile(String word, String filePath) {
+	/**
+	 * @param word
+	 * @param filePath
+	 * This method appends word on filePath
+	 */
+	public static void appendFile(String word, String filePath) {
 
 		try {
 			FileWriter writer = new FileWriter(filePath, true);
-			out = new PrintWriter(writer);
+			PrintWriter out = new PrintWriter(writer);
 			out.println(word);
 			out.close();
 			writer.close();
@@ -826,6 +840,26 @@ public class Utility {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void writeFile(String word[], String filePath) {
+
+		try {
+			FileWriter writer = new FileWriter(filePath, false);
+			PrintWriter out = new PrintWriter(writer);
+			for(int i=0;i<word.length;i++){
+			out.write(word[i]+" ");
+			}
+			out.close();
+			writer.close();
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	public static void returnNotes(int noteCounts[], int change, int pos) {
 		int notes[] = { 1000, 500, 100, 50, 10, 2, 1 };

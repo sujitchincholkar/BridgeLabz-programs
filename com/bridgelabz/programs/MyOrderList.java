@@ -8,7 +8,7 @@ public class MyOrderList {
 	public static void main(String args[]){
 		String filePath="/home/bridgeit/Documents/number";
 		String num[]=Utility.readFile(filePath);
-		OrderedList<Integer> list=new OrderedList<>();
+		OrderedList<Integer> list=new OrderedList<Integer>();
 		Scanner sc=new Scanner(System.in);
 		for(int i=0;i<num.length;i++){
 			System.out.println(num[i]);
@@ -24,5 +24,11 @@ public class MyOrderList {
 			list.add(numSearch);
 		}
 		
+		num=new String[list.size()];
+		for(int i=0;i<list.size();i++){
+			num[i]=String.valueOf(list.get(i));
+			System.out.println(num[i]);
+		}
+		Utility.writeFile(num, filePath);
 	}
 }

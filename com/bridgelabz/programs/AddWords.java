@@ -22,7 +22,7 @@ public class AddWords {
 		if(linklist.search(search)){
 			System.out.println("Word is already present in linked list");
 		}else {
-			Utility.writeFile(search,filePath);
+			Utility.appendFile(search,filePath);
 			System.out.println("Word Added");
 		}
 		

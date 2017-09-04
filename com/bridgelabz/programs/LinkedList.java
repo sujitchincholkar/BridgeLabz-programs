@@ -38,12 +38,24 @@ public class LinkedList<T> {
 	public void remove(T data) {
 		Node<T> tempCurrent = root;
 		Node<T> tempPrev = root;
-		while (tempCurrent != null) {
-			if (tempCurrent.data.equals(data)) {
-				tempPrev = tempCurrent.next;
+		if(root.data.equals(data)){
+			root=root.next;
+		}else if(current.data.equals(data)){
+			while(tempCurrent!=null){
+				tempPrev=tempCurrent;
+				tempCurrent=tempCurrent.next;
 			}
-			tempPrev = tempCurrent;
-			tempCurrent = tempCurrent.next;
+			tempPrev.next = tempCurrent.next;
+			current=tempPrev;
+		}else{
+			while (tempCurrent != null) {
+				if (tempCurrent.data.equals(data)) {
+					tempPrev.next = tempCurrent.next;
+					break;
+				}
+				tempPrev = tempCurrent;
+				tempCurrent = tempCurrent.next;
+			}
 		}
 		if (size != 0) {
 			size--;
@@ -84,17 +96,26 @@ public class LinkedList<T> {
 		Node temp=root;
 		int index=0;
 		while(temp!=null){
-			index++;
+			
 			if(temp.data.equals(item)){
 				return index;
 			}
 			temp=temp.next;
+			index++;
 		}
 		return index;
+	}
+	public T get(int index){
+		Node<T> tempCurrent=root;
+		for(int i=0;i<index;i++){
+			tempCurrent=tempCurrent.next;
+		}
+		return tempCurrent.data;
 	}
 	
 	public T pop(){
 		T data=current.data;
+		remove(current.data);
 		return data;
 	}
 	public T pop(int pos){
