@@ -14,19 +14,23 @@ public class PalindromeChecker {
 		for(int i=0;i<letters.length;i++){
 			pCheck.dQ.addRear(letters[i]);
 		}
-		pCheck.dQ.printList();
 		System.out.println(pCheck.checkPalindrome());
-		pCheck.dQ.printList();
+
 	}
 
 	private boolean checkPalindrome() {
 		boolean isPalindrome=false;
 		while(!dQ.isEmpty()){
-			if(dQ.removeFront().equals(dQ.removeRear())){
-				isPalindrome=true;
+			if(dQ.size()!=1){
+				if(dQ.removeFront().equals(dQ.removeRear())){
+					isPalindrome=true;
+				}else{
+					isPalindrome=false;
+					break;
+				}
 			}else{
-				isPalindrome=false;
-				break;
+				dQ.removeRear();
+				isPalindrome=true;
 			}
 		}
 		return isPalindrome;

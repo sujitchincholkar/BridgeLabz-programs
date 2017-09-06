@@ -5,7 +5,7 @@ public class Stack<T> {
 	Node<T> top;
 	public void push(T item){
 		list.add(item);
-		top=list.current;
+		top=list.end;
 	}
 	public T pop(){
 		if(!list.isEmpty())

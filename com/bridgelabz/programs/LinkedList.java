@@ -13,12 +13,12 @@ class Node<T> {
 
 public class LinkedList<T> {
 	Node<T> root;
-	Node<T> current;
+	Node<T> end;
 	int size;
 
 	public LinkedList() {
 		root = null;
-		current = null;
+		end = null;
 		size = 0;
 	}
 
@@ -26,26 +26,40 @@ public class LinkedList<T> {
 		Node<T> node = new Node<T>(data);
 		if (this.isEmpty()) {
 			root = node;
-			current = node;
-
+			end = node;
+			
 		} else {
-			current.next = node;
-			current = current.next;
+			end.next = node;
+			end = end.next;
 		}
 		size++;
 	}
-	public void remove(int pos){
+	public void removeAt(int pos){
 		int tempPos=0;
 		Node<T> tempPrev=root; 
-		if(pos<this.size() && pos>0){
-			while(tempPos<pos){
-				tempPrev=tempPrev.next;
+		Node<T> tempCurrent=root;
+		if(pos==0){
+			root=root.next;
+			
+		}else if(pos==(this.size()-1)){
+			while(tempCurrent.next!=null){
+				tempPrev=tempCurrent;
+				tempCurrent=tempCurrent.next;
+			}
+			tempPrev.next = tempPrev.next.next;
+			end=tempPrev;
+		}else if(pos<this.size()){
+			while(tempCurrent.next!=null){
+				if(pos==tempPos){	
+					tempPrev.next=tempPrev.next.next;
+					break;
+				}
+				tempPrev=tempCurrent;
+				tempCurrent=tempCurrent.next;
 				tempPos++;
 			}
-			tempPrev.next=tempPrev.next.next;
-		}
-		else{
-			System.out.println("given index does not exist");
+		}else{
+			System.out.println("Given index does not exist");
 		}
 		
 	}
@@ -54,13 +68,13 @@ public class LinkedList<T> {
 		Node<T> tempPrev = root;
 		if(root.data.equals(data)){
 			root=root.next;
-		}else if(current.data.equals(data)){
-			while(tempCurrent!=null){
+		}else if(end.data.equals(data)){
+			while(tempCurrent.next!=null){
 				tempPrev=tempCurrent;
 				tempCurrent=tempCurrent.next;
 			}
 			tempPrev.next = tempPrev.next.next;
-			current=tempPrev;
+			end=tempPrev;
 		}else{
 			while (tempCurrent != null) {
 				if (tempCurrent.data.equals(data)) {
@@ -120,21 +134,27 @@ public class LinkedList<T> {
 		return index;
 	}
 	public T get(int index){
-		Node<T> tempCurrent=root;
-		for(int i=0;i<index;i++){
-			tempCurrent=tempCurrent.next;
+		Node<T> tempCurrent=new Node(null);
+		if(index>=0 && index<this.size()){
+			tempCurrent=root;
+			for(int i=0;i<index;i++){
+				tempCurrent=tempCurrent.next;
+			}
+		}else{
+			System.out.println("Invalid index");
 		}
+		
 		return tempCurrent.data;
 	}
 	
 	public T pop(){
-		T data=current.data;
-		remove(this.size()-1);
+		T data=end.data;
+		removeAt(this.size()-1);
 		return data;
 	}
 	public T pop(int pos){
 		T tempData=get(pos);
-		remove(pos);
+		removeAt(pos);
 		return tempData;
 		
 	}

@@ -8,14 +8,14 @@ public class OrderedList<T extends Comparable<T>> extends LinkedList<T> {
 		Node<T> newNode = new Node<T>(data);
 		if (this.isEmpty()) {
 			root = newNode;
-			current = root;
+			end = root;
 		} else if (root.data.compareTo(data) > 0) {
 			newNode.next = root;
 			root = newNode;
-		} else if (current.data.compareTo(data) < 0) {
-			current.next = newNode;
+		} else if (end.data.compareTo(data) < 0) {
+			end.next = newNode;
 			newNode.next = null;
-			current=newNode;
+			end=newNode;
 		} else {
 			while (tempCurrent != null) {
 				if (tempCurrent.data.compareTo(data) > 0) {
