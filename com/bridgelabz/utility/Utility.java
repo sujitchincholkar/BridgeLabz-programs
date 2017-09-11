@@ -125,13 +125,13 @@ public class Utility {
 		return isPresent;
 	}
 
-	public static <T extends Comparable<T>>boolean binarySearch(T arr[], T str) {
+	public static <T extends Comparable<T>> boolean binarySearch(T arr[], T str) {
 		int low = 0;
 		boolean isPresent = false;
 		int high = arr.length - 1;
 		int mid = high / 2;
 		while (high >= low) {
-			if (arr[mid].compareTo(str)==0) {
+			if (arr[mid].compareTo(str) == 0) {
 				isPresent = true;
 				break;
 			} else if (arr[mid].compareTo(str) < 0) {
@@ -159,20 +159,16 @@ public class Utility {
 
 	}
 
-	/*public static void insertionSort(String arr[]) {
-
-		for (int i = 1; i < arr.length; i++) {
-			String key = arr[i];
-			int j = i - 1;
-			while (j >= 0 && arr[j].compareToIgnoreCase(key) > 0) {
-				arr[j + 1] = arr[j];
-				j--;
-			}
-			arr[j + 1] = key;
-		}
-
-	}*/
-	public static <T extends Comparable<T>>void insertionSort(T arr[]) {
+	/*
+	 * public static void insertionSort(String arr[]) {
+	 * 
+	 * for (int i = 1; i < arr.length; i++) { String key = arr[i]; int j = i -
+	 * 1; while (j >= 0 && arr[j].compareToIgnoreCase(key) > 0) { arr[j + 1] =
+	 * arr[j]; j--; } arr[j + 1] = key; }
+	 * 
+	 * }
+	 */
+	public static <T extends Comparable<T>> void insertionSort(T arr[]) {
 
 		for (int i = 1; i < arr.length; i++) {
 			T key = arr[i];
@@ -201,7 +197,7 @@ public class Utility {
 
 	}
 
-	public static <T extends Comparable<T>>void bubbleSort(T arr[]) {
+	public static <T extends Comparable<T>> void bubbleSort(T arr[]) {
 		T temp;
 		for (int i = 0; i < arr.length - 1; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
@@ -690,70 +686,55 @@ public class Utility {
 		}
 	}
 
-	/*public static String[] mergeSort(String arr[]) {
-		String firstArray[] = new String[arr.length / 2];
-		String secondArray[] = new String[arr.length - (arr.length / 2)];
-
-		int j = 0;
-		if (arr.length == 1) {
-			return arr;
-		}
-		for (int i = 0; i < firstArray.length; i++) {
-			firstArray[i] = arr[i];
-		}
-
-		for (int i = firstArray.length; i < arr.length; i++) {
-			secondArray[j] = arr[i];
-			j++;
-		}
-
-		firstArray = mergeSort(firstArray);
-		secondArray = mergeSort(secondArray);
-
-		String[] returnArray = new String[arr.length];
-		int firstIndex = 0, secondIndex = 0;
-		for (int i = 0; i < returnArray.length; i++) {
-			if (secondIndex == secondArray.length) {
-				returnArray[i] = firstArray[firstIndex];
-				firstIndex++;
-			} else if (firstIndex == firstArray.length) {
-				returnArray[i] = secondArray[secondIndex];
-				secondIndex++;
-			} else if (firstArray[firstIndex]
-					.compareTo(secondArray[secondIndex]) > 0) {
-				returnArray[i] = secondArray[secondIndex];
-				secondIndex++;
-			} else {
-				returnArray[i] = firstArray[firstIndex];
-				firstIndex++;
-			}
-		}
-
-		return returnArray;
-
-	}*/
+	/*
+	 * public static String[] mergeSort(String arr[]) { String firstArray[] =
+	 * new String[arr.length / 2]; String secondArray[] = new String[arr.length
+	 * - (arr.length / 2)];
+	 * 
+	 * int j = 0; if (arr.length == 1) { return arr; } for (int i = 0; i <
+	 * firstArray.length; i++) { firstArray[i] = arr[i]; }
+	 * 
+	 * for (int i = firstArray.length; i < arr.length; i++) { secondArray[j] =
+	 * arr[i]; j++; }
+	 * 
+	 * firstArray = mergeSort(firstArray); secondArray = mergeSort(secondArray);
+	 * 
+	 * String[] returnArray = new String[arr.length]; int firstIndex = 0,
+	 * secondIndex = 0; for (int i = 0; i < returnArray.length; i++) { if
+	 * (secondIndex == secondArray.length) { returnArray[i] =
+	 * firstArray[firstIndex]; firstIndex++; } else if (firstIndex ==
+	 * firstArray.length) { returnArray[i] = secondArray[secondIndex];
+	 * secondIndex++; } else if (firstArray[firstIndex]
+	 * .compareTo(secondArray[secondIndex]) > 0) { returnArray[i] =
+	 * secondArray[secondIndex]; secondIndex++; } else { returnArray[i] =
+	 * firstArray[firstIndex]; firstIndex++; } }
+	 * 
+	 * return returnArray;
+	 * 
+	 * }
+	 */
 	/**
 	 * @param Compare
 	 * @param arr
-	 * @return sorted array
-	 * This Method returns sorted array
+	 * @return sorted array This Method returns sorted array
 	 */
-	public static <T extends Comparable<T>> Compare[] mergeSort(Compare<T> arr[]) {
-		
-		Compare<T> firstArray[] =  new Compare[arr.length/2] ;
-		Compare<T> secondArray[] =  new Compare[arr.length-arr.length/2] ;
+	public static <T extends Comparable<T>> Compare[] mergeSort(
+			Compare<T> arr[]) {
+
+		Compare<T> firstArray[] = new Compare[arr.length / 2];
+		Compare<T> secondArray[] = new Compare[arr.length - arr.length / 2];
 		int j = 0;
 		if (arr.length == 1) {
 			return arr;
 		}
 		for (int i = 0; i < firstArray.length; i++) {
-			firstArray[i]=new Compare();
-			firstArray[i].value =  arr[i].value;
+			firstArray[i] = new Compare();
+			firstArray[i].value = arr[i].value;
 		}
 
 		for (int i = firstArray.length; i < arr.length; i++) {
-			secondArray[j]=new Compare();
-			secondArray[j].value =arr[i].value;
+			secondArray[j] = new Compare();
+			secondArray[j].value = arr[i].value;
 			j++;
 		}
 
@@ -763,7 +744,7 @@ public class Utility {
 		Compare<T>[] returnArray = new Compare[arr.length];
 		int firstIndex = 0, secondIndex = 0;
 		for (int i = 0; i < returnArray.length; i++) {
-			returnArray[i]=new Compare();
+			returnArray[i] = new Compare();
 			if (secondIndex == secondArray.length) {
 				returnArray[i] = firstArray[firstIndex];
 				firstIndex++;
@@ -786,28 +767,27 @@ public class Utility {
 
 	/**
 	 * @param filePath
-	 * @return String array
-	 * This method read words into String array from 
-	 * given filePath and return it
+	 * @return String array This method read words into String array from given
+	 *         filePath and return it
 	 */
 	public static String[] readFile(String filePath) {
-		String words[]={} ;
-		ArrayList<String> lines=new ArrayList<String>();
-		String line,temp[]={};
+		String words[] = {};
+		ArrayList<String> lines = new ArrayList<String>();
+		String line, temp[] = {};
 		BufferedReader bufferedReader;
 		FileReader file;
-		int index=0;
+		int index = 0;
 		try {
 			file = new FileReader(filePath);
 			bufferedReader = new BufferedReader(file);
 			while ((line = bufferedReader.readLine()) != null) {
-				temp=line.split(",|\\s");
-				for(int i=0;i<temp.length;i++){
+				temp = line.split(",|\\s");
+				for (int i = 0; i < temp.length; i++) {
 					lines.add(temp[i]);
-					
+
 				}
 			}
-			words=lines.toArray(new String[lines.size()]);
+			words = lines.toArray(new String[lines.size()]);
 			bufferedReader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -822,7 +802,7 @@ public class Utility {
 	/**
 	 * @param word
 	 * @param filePath
-	 * This method appends word on filePath
+	 *            This method appends word on filePath
 	 */
 	public static void appendFile(String word, String filePath) {
 
@@ -840,14 +820,14 @@ public class Utility {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void writeFile(String word[], String filePath) {
 
 		try {
 			FileWriter writer = new FileWriter(filePath, false);
 			PrintWriter out = new PrintWriter(writer);
-			for(int i=0;i<word.length;i++){
-			out.write(word[i]+" ");
+			for (int i = 0; i < word.length; i++) {
+				out.write(word[i] + " ");
 			}
 			out.close();
 			writer.close();
@@ -859,7 +839,6 @@ public class Utility {
 			e.printStackTrace();
 		}
 	}
-
 
 	public static void returnNotes(int noteCounts[], int change, int pos) {
 		int notes[] = { 1000, 500, 100, 50, 10, 2, 1 };
@@ -874,11 +853,93 @@ public class Utility {
 		}
 	}
 
-	public static void fillArray(String[][] days,int month,int year) {
+	public static void fillArray(String[][] days, int month, int year) {
 		// TODO Auto-generated method stub
-		
-		
+		int daysInMonth[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		int dayCount = 1;
+		String weekDays[] = { "S", "M", "T", "W", "Th", "F", "Sa" };
+		int startDay = dayOfWeek(1, month, year);
+		int j = 0;
+		if (isLeapYear(year)) {
+			daysInMonth[2] = 29;
+		}
+		for (int i = 0; i < 7; i++) {
+			days[j][i] = weekDays[i];
+		}
+
+		for (int i = 1; i < 7; i++) {
+			for (j = 0; j < 7; j++)
+				if (startDay >= dayCount) {
+					days[i][j] = " ";
+					startDay--;
+
+				} else if (dayCount <= daysInMonth[month]) {
+					days[i][j] = String.valueOf(dayCount);
+					dayCount++;
+				} else {
+					days[i][j] = " ";
+				}
+		}
 	}
 
+	public static void printCalender(String[][] days, int month, int year) {
+		// TODO Auto-generated method stub
+		String months[] = { "January", "February", "March", "April", "May",
+				"June", "July", "August", "September", "October", "November",
+				"December" };
+		System.out.println(months[month - 1] + "\t" + year);
+		for (int i = 0; i < 7; i++) {
+			for (int j = 0; j < 7; j++) {
+				System.out.print(days[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+
+	public static int[][] findPrimeInRange(int[][] primeArray) {
+		primeArray = new int[10][100];
+		int number = 2;
+		int k = 0;
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 100 && number < ((i + 1) * 100); j++) {
+				if (isPrime(number)) {
+					primeArray[i][k] = number;
+					k++;
+				}
+				number++;
+			}
+			k = 0;
+		}
+		return primeArray;
+	}
+
+	public static String[][] primeAnagramInRange() {
+		int primeArray[][] = {};
+		int k = 0;
+		String primeAnagram[][] = new String[10][100];
+		primeArray = findPrimeInRange(primeArray);
 	
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 99 && primeArray[i][j]!=0; j++) {
+				
+					for (int x = j + 1; x < 100&&primeArray[i][x]!=0; x++) {
+						
+						if (isAnagram(String.valueOf(primeArray[i][j]),
+								String.valueOf(primeArray[i][x]))) {
+							//System.out.println(primeArray[i][j]+" "+primeArray[i][x]);
+							primeAnagram[i][k] = String
+									.valueOf(primeArray[i][j]);
+							k++;
+							primeAnagram[i][k] = String
+									.valueOf(primeArray[i][x]);
+							k++;
+						}
+					}
+					
+					
+			}
+			k = 0;
+		}
+		return primeAnagram;
+	}
 }
