@@ -1,10 +1,10 @@
-/**************************
+/*************************
 * Purpose : To perform basic arithmatic operation on a,b and c.
 *
 * @author  Sujit
 * @version 1.0
 * @since   7/08/2017
-***************************/
+**************************/
 
 
 public class DoubleOpt { 
